@@ -39,14 +39,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const url = "https://xeno.cx/posts/gematria.html";
 
-    browser = await chrome.puppeteer.launch({
-      args: isDev ? [] : chrome.args,
-      defaultViewport: chrome.defaultViewport,
-      executablePath: isDev
-        ? pptr.executablePath()
-        : await chrome.executablePath,
-      headless: isDev ? true : chrome.headless,
-      ignoreHTTPSErrors: true,
+    const browser = await chrome.puppeteer.launch({
+      args: chrome.args,
+      executablePath: await chrome.executablePath,
+      headless: chrome.headless,
     });
     const page = await browser.newPage();
 
