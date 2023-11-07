@@ -8,7 +8,7 @@
     "start": "next start"
   },
  "dependencies": {
-  "chrome-aws-lambda": "^10.1.0",
+  "chrome-aws-lambda": "^5.5.0",
   "next": "^12.0.7",
   "puppeteer": "^5.5.0",
   "react": "^17.0.2",
