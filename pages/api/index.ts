@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import chrome from "chrome-aws-lambda";
 import pptr from "puppeteer-core";
 
-const isDev = process.env.NODE_ENV === "development";
+const isDev = process.env.NODE_ENV === "production";
 
 type TypeResult = {
   input: string;
