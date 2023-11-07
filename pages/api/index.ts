@@ -1,7 +1,7 @@
-import type { Browser } from "puppeteer";
+import type { Browser } from "puppeteer-core";
 import type { NextApiRequest, NextApiResponse } from "next";
 import chrome from "chrome-aws-lambda";
-import pptr from "puppeteer";
+import pptr from "puppeteer-core";
 
 const isDev = process.env.NODE_ENV === "development";
 
