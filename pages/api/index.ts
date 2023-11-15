@@ -39,15 +39,23 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const url = "https://xeno.cx/posts/gematria.html";
 
-    browser = await pptr.launch({
-      args: chrome.args,
-      defaultViewport: chrome.defaultViewport,
-      executablePath: await chrome.executablePath,
-      headless: chrome.headless,
-      ignoreHTTPSErrors: true,
-    });
-
-    const page = await browser.newPage();
+    export default async function screenshot(url: string) {
+  const options = process.env.AWS_REGION
+    ? {
+        args: chrome.args,
+        executablePath: await chrome.executablePath,
+        headless: chrome.headless
+      }
+    : {
+        args: [],
+        executablePath:
+          process.platform === 'win32'
+            ? 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
+            : process.platform === 'linux'
+            ? '/usr/bin/google-chrome'
+            : '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+      };
+  const browser = await puppeteer.launch(options);
 
     await page.goto(url, {
       waitUntil: "load",
