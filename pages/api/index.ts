@@ -39,7 +39,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const url = "https://xeno.cx/posts/gematria.html";
 
-    browser = await chrome..launch({
+    browser = await chrome.launch({
       args: isDev ? [] : chrome.args,
       defaultViewport: chrome.defaultViewport,
       executablePath: isDev
