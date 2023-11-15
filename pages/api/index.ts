@@ -1,7 +1,7 @@
-import type { Browser } from "puppeteer";
+import type { Browser } from "puppeteer-core";
 import type { NextApiRequest, NextApiResponse } from "next";
 import chrome from "chrome-aws-lambda";
-import pptr from "puppeteer";
+import pptr from "puppeteer-core";
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -39,7 +39,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const url = "https://xeno.cx/posts/gematria.html";
 
-    browser = await chrome.puppeteer.launch({
+    browser = await chrome..launch({
       args: isDev ? [] : chrome.args,
       defaultViewport: chrome.defaultViewport,
       executablePath: isDev
