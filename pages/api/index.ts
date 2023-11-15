@@ -41,20 +41,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     export default async function screenshot(url: string) {
   const options = process.env.AWS_REGION
-    ? {
-        args: chrome.args,
-        executablePath: await chrome.executablePath,
-        headless: chrome.headless
-      }
-    : {
-        args: [],
-        executablePath:
-          process.platform === 'win32'
-            ? 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
-            : process.platform === 'linux'
-            ? '/usr/bin/google-chrome'
-            : '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-      };
+      
+    const options = isDev ? {
+      args: [], // Thêm các tùy chọn cho môi trường phát triển
+      executablePath: pptr.executablePath(), // Đường dẫn thực thi Puppeteer
+      headless: true // Chạy ở chế độ headless
+    } : {
+      args: chrome.args,
+      executablePath: await chrome.executablePath,
+      headless: chrome.headless
+    };
   const browser = await puppeteer.launch(options);
 
     await page.goto(url, {
