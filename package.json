@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "engines": {
-    "node": "^16"
+    "node": "18.x"
   },
  "dependencies": {
   "chrome-aws-lambda": "^5.5.0",
