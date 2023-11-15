@@ -54,12 +54,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     await page.$eval(
-      inputSelector,
-      function (element: HTMLInputElement, value) {
-        element.value = value;
-      },
-      text
-    );
+        inputSelector,
+        (element, value: string) => {
+          (element as HTMLInputElement).value = value;
+        },
+        text
+      );
 
     await page.click(submitButtonSelector);
 
